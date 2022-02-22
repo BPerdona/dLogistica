@@ -10,15 +10,9 @@
 
 <body>
     {% include 'parciais/_nav.html' %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                {% block conteudo %}
-                {% endblock %}
-            </div>
-        </div>
-    </div>
+    
+    {% block conteudo%}
+    {% endblock %}
 
     <script src="{% static 'vendor/jquery/jquery.slim.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
