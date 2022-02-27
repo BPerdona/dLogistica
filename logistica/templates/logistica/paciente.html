@@ -1,3 +1,44 @@
-{% for paciente in pacientes %}
-<p>Nome: {{paciente.nome_completo}}</p>
-{% endfor %}
+{% extends 'base.html' %}
+{% block conteudo %}
+
+    <form method="get" action="">
+        <div class="form-group row">
+            <div class="col-12">
+                <input class="form-control"
+                       type="search" value=""
+                       id="search-input"
+                       placeholder="Digite sua pesquisa"
+                       name="termo">
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome Completo</th>
+        <th>CPF</th>
+        <th>CNS</th>
+        <th>Telefone</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for paciente in pacientes %}
+            <tr>
+                <td>{{ paciente.id }}</td>
+                <td>
+                <a href="#"> {{ paciente.nome_completo }}</a>
+                </td>
+                <td>{{ paciente.cpf }}</td>
+                <td>{{ paciente.cns }}</td>
+                <td>{{ paciente.telefone }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+{% endblock %}

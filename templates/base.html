@@ -15,8 +15,15 @@
         {% include 'parciais/_nav.html' %}
     {% endblock %}
     
-    {% block conteudo%}
-    {% endblock %}
+    <div class="content-container">
+        <div class="container-fluid">
+            <div class="jumbotron">
+                {% block conteudo %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div>
 
     <script src="{% static 'vendor/jquery/jquery.slim.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
