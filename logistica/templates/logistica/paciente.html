@@ -38,7 +38,38 @@
     </tbody>
 </table>
 
-
-
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% if pacientes.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pacientes.previous_page_number }}">Anterior</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="">Anterior</a>
+            </li>
+        {% endif %}
+        {% for pagina in pacientes.paginator.page_range %}
+        {% if pacientes.number == pagina %}
+            <li class="page-item active">
+                <a class="page-link" href="?page={{ pagina }}">{{pagina}}</a>
+            </li>
+        {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pagina }}">{{pagina}}</a>
+            </li>
+        {% endif %}
+        {% endfor %}
+        {% if pacientes.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ pacientes.next_page_number }}">Próximo</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="">Próximo</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
 
 {% endblock %}
