@@ -1,5 +1,5 @@
 from urllib import request
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from logistica.models import Paciente, Consulta, Viagem, Motorista
 from django.core.paginator import Paginator
 from django.db.models import Q, Value
@@ -40,6 +40,10 @@ def buscaPaciente(request):
     #Pegando o termo da URL de pesquisa
     termo = request.GET.get('termo')
 
+    #Verificação de Termo
+    if termo is None or not termo:
+        return redirect('paciente')
+    
     #Filtragem
     pacientes = Paciente.objects.order_by('-id').filter(
         Q(nome_completo__icontains = termo) | Q(telefone__icontains = termo) | Q(cpf__icontains = termo) | Q(cns__icontains = termo),
@@ -76,11 +80,13 @@ def buscaConsulta(request):
     #Pegando o termo da URL de pesquisa
     termo = request.GET.get('termo')
 
-    #Falta realizar a consulta por nome
+    #Verificação de Termo
+    if termo is None or not termo:
+        return redirect('paciente')
 
     #Filtragem
     consultas = Consulta.objects.order_by('-id').filter(
-        Q(data_da_consulta__icontains=termo) | Q(hospital__icontains=termo),
+        Q(paciente__nome_completo__icontains=termo) | Q(data_da_consulta__icontains=termo) | Q(hospital__icontains=termo),
         status_tupla=True
     )
     
