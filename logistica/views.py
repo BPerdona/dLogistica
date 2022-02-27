@@ -18,7 +18,9 @@ def index(request):
     return render(request, 'logistica/index.html', context)
 
 def listPaciente(request):
-    context = Paciente.objects.order_by('-id').filter(
+    pacientes = Paciente.objects.order_by('-id').filter(
         status_tupla=True
     )
-    return render(request, 'paciente.html', context)
+    return render(request, 'logistica/paciente.html', {
+        'pacientes' : pacientes
+    })
