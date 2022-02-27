@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 
-    <form method="get" action="">
+    <form method="get" action="{% url 'busca_consulta' %}">
         <div class="form-group row">
             <div class="col-12">
                 <input class="form-control"
-                       type="search" value=""
+                       type="search" value="{{ request.GET.termo }}"
                        id="search-input"
                        placeholder="Digite sua pesquisa"
                        name="termo">
