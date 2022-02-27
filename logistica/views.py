@@ -1,5 +1,5 @@
-from urllib import request
-from django.shortcuts import redirect, render
+from django.http import Http404
+from django.shortcuts import redirect, render, get_object_or_404
 from logistica.models import Paciente, Consulta, Viagem, Motorista
 from django.core.paginator import Paginator
 from django.db.models import Q, Value
@@ -98,4 +98,12 @@ def buscaConsulta(request):
     #renderização da pagina
     return render(request, 'logistica/consulta.html', {
         'consultas' : consultas
+    })
+
+def ver_consulta(request, consulta_id):
+    consulta = get_object_or_404(Consulta, id=consulta_id)
+    if not consulta.status_tupla:
+        raise Http404
+    return render(request, 'logistica/ver_consulta.html',{
+        'consulta': consulta
     })
