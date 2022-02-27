@@ -4,12 +4,16 @@
 <html lang="pt">
 
 <head>
-    <title>Document</title>
+    {% block title %}
+        <title>Dlogistica</title>
+    {% endblock %}
     {% include 'parciais/_head.html' %}
 </head>
 
 <body>
-    {% include 'parciais/_nav.html' %}
+    {% block sidebar %}
+        {% include 'parciais/_nav.html' %}
+    {% endblock %}
     
     {% block conteudo%}
     {% endblock %}
