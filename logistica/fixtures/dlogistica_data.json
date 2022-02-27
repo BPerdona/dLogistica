@@ -11,7 +11,6 @@
       "telefone": "(47)992091810"
     }
   },
-
   {
     "model": "logistica.Paciente",
     "pk": 2,
@@ -21,6 +20,114 @@
       "cpf": "00000000000",
       "cns": "2222222222222222",
       "data_de_nascimento": "2000-07-26",
+      "telefone": "(47)996156906"
+    }
+  },
+  {
+    "model": "logistica.Paciente",
+    "pk": 3,
+    "fields": {
+      "nome_completo": "Daniel Wzoreck",
+      "rg": "012024020",
+      "cpf": "00111000000",
+      "cns": "2222444422222222",
+      "data_de_nascimento": "2000-07-08",
+      "telefone": "(11)996156906"
+    }
+  },
+  {
+    "model": "logistica.Paciente",
+    "pk": 4,
+    "fields": {
+      "nome_completo": "Acacio Higino",
+      "rg": "077702020",
+      "cpf": "01234000000",
+      "cns": "12345522222222222",
+      "data_de_nascimento": "2001-05-06",
+      "telefone": "(47)11111111"
+    }
+  },
+  {
+    "model": "logistica.Paciente",
+    "pk": 5,
+    "fields": {
+      "nome_completo": "Geraldo Therivia",
+      "rg": "637563546",
+      "cpf": "00536000000",
+      "cns": "22222232233232",
+      "data_de_nascimento": "1995-12-10",
+      "telefone": "(69)69696969"
+    }
+  },
+  {
+    "model": "logistica.Paciente",
+    "pk": 6,
+    "fields": {
+      "nome_completo": "Counter Terrorist",
+      "rg": "0178263",
+      "cpf": "1332113213",
+      "cns": "22211111111112",
+      "data_de_nascimento": "1998-01-20",
+      "telefone": "(9)91236906"
+    }
+  },
+  {
+    "model": "logistica.Paciente",
+    "pk": 7,
+    "fields": {
+      "nome_completo": "Lucca Borba",
+      "rg": "061524167",
+      "cpf": "123512351",
+      "cns": "2228533222222",
+      "data_de_nascimento": "2002-04-17",
+      "telefone": "(47)994456906"
+    }
+  },
+  {
+    "model": "logistica.Paciente",
+    "pk": 8,
+    "fields": {
+      "nome_completo": "Mandrake",
+      "rg": "021302120",
+      "cpf": "00000000011",
+      "cns": "2222222222222233",
+      "data_de_nascimento": "1960-08-13",
+      "telefone": "(11)912346906"
+    }
+  },
+  {
+    "model": "logistica.Paciente",
+    "pk": 9,
+    "fields": {
+      "nome_completo": "Gordon Freeman",
+      "rg": "110202011",
+      "cpf": "11000000011",
+      "cns": "112222222222211",
+      "data_de_nascimento": "1956-02-23",
+      "telefone": "(15)922156911"
+    }
+  },
+  {
+    "model": "logistica.Paciente",
+    "pk": 10,
+    "fields": {
+      "nome_completo": "Cristiano Meirelles",
+      "rg": "120202341",
+      "cpf": "00005500000",
+      "cns": "1111111111111",
+      "data_de_nascimento": "2004-07-23",
+      "telefone": "(11)996156556"
+    }
+  },
+  {
+    "model": "logistica.Paciente",
+    "pk": 11,
+    "fields": {
+      "nome_completo": "Gabriel Cardoso",
+      "rg": "123202312",
+      "cpf": "33300044400",
+      "cns": "1232222254321",
+      "data_de_nascimento": "1998-02-08",
       "telefone": "(47)996156906"
     }
   }
