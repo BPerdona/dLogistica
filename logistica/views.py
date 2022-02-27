@@ -24,3 +24,14 @@ def listPaciente(request):
     return render(request, 'logistica/paciente.html', {
         'pacientes' : pacientes
     })
+
+def buscaPaciente(request):
+    return render(request, 'logistica/buscaPaciente.html')
+
+def listConsulta(request):
+    consultas = Consulta.objects.order_by('-id').filter(
+        status_tupla=True
+    )
+    return render(request, 'logistica/consulta.html', {
+        'consultas' : consultas
+    })
