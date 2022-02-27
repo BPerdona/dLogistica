@@ -10,6 +10,7 @@ class Paciente(models.Model):
     cns = models.CharField(max_length=20)
     data_de_nascimento = models.DateField(null=True, blank=True)
     telefone = models.CharField(max_length=15)
+    status_tupla = models.BooleanField(default=True)
 
     def __str__(self) :
         return self.nome_completo
@@ -21,6 +22,7 @@ class Consulta(models.Model):
     horario_da_consulta = models.CharField(max_length=20)
     acompanhante = models.CharField(max_length=200)
     local_de_espera = models.TextField(max_length=5000)
+    status_tupla = models.BooleanField(default=True)
 
     def __str__(self):
         return f'Hospital: {self.hospital} Data: {self.data_da_consulta} Paciente: {self.paciente.nome}'
@@ -30,6 +32,7 @@ class Motorista(models.Model):
     rg = models.CharField(max_length=10)
     cpf = models.CharField(max_length=12)
     data_de_nascimento = models.DateField()
+    status_tupla = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nome
@@ -40,6 +43,7 @@ class Viagem(models.Model):
     consultas = models.ManyToManyField(Consulta, help_text="Selecione as consultas que iram nessa viagem.")
     horario_de_saida = models.CharField(max_length=20)
     destino: models.CharField(max_length=30)
+    status_tupla = models.BooleanField(default=True)
 
     def __str__(self):
         return f'Data: {self.data_da_viagem} Motorista: {self.motorista.nome}'
