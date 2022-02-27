@@ -130,5 +130,149 @@
       "data_de_nascimento": "1998-02-08",
       "telefone": "(47)996156906"
     }
+  },
+  {
+    "model": "logistica.Consulta",
+    "pk": 1,
+    "fields": {
+      "data_da_consulta": "2020-02-27",
+      "hospital": "Santa Cruz - Canoinhas",
+      "paciente": 1,
+      "horario_da_consulta": "09:30",
+      "acompanhante": "Rogerio Almeida",
+      "local_de_espera": "Proximo a sorveteria esquimó"
+    }
+  },
+  {
+    "model": "logistica.Consulta",
+    "pk": 2,
+    "fields": {
+      "data_da_consulta": "2020-02-07",
+      "hospital": "UPA - Canoinhas",
+      "paciente": 5,
+      "horario_da_consulta": "10:30",
+      "acompanhante": "Carlos Wzoreck",
+      "local_de_espera": "Campo da agua-verde"
+    }
+  },
+  {
+    "model": "logistica.Consulta",
+    "pk": 3,
+    "fields": {
+      "data_da_consulta": "2020-01-27",
+      "hospital": "Santa Cruz - Canoinhas",
+      "paciente": 2,
+      "horario_da_consulta": "10:00",
+      "acompanhante": "Joana Carolina",
+      "local_de_espera": "Cesc"
+    }
+  },
+  {
+    "model": "logistica.Consulta",
+    "pk": 4,
+    "fields": {
+      "data_da_consulta": "2020-02-12",
+      "hospital": "Albert Einstein - São Paulo",
+      "paciente": 7,
+      "horario_da_consulta": "07:00",
+      "acompanhante": "Roberto Carlos",
+      "local_de_espera": "Via Atacadista"
+    }
+  },
+  {
+    "model": "logistica.Consulta",
+    "pk": 5,
+    "fields": {
+      "data_da_consulta": "2020-01-05",
+      "hospital": "Santa Cruz - Canoinhas",
+      "paciente": 1,
+      "horario_da_consulta": "13:30",
+      "acompanhante": "Selia Oliveira",
+      "local_de_espera": "IFSC"
+    }
+  },
+  {
+    "model": "logistica.Consulta",
+    "pk": 6,
+    "fields": {
+      "data_da_consulta": "2022-02-27",
+      "hospital": "PEP - Uniao da Vitoria",
+      "paciente": 10,
+      "horario_da_consulta": "11:30",
+      "acompanhante": "Jorge Santos",
+      "local_de_espera": "Praça da Cuia"
+    }
+  },
+  {
+    "model": "logistica.Consulta",
+    "pk": 7,
+    "fields": {
+      "data_da_consulta": "2021-07-02",
+      "hospital": "Santa Cruz - Canoinhas",
+      "paciente": 8,
+      "horario_da_consulta": "05:00",
+      "acompanhante": "Maria Santana",
+      "local_de_espera": "Matriz"
+    }
+  },
+  {
+    "model": "logistica.Consulta",
+    "pk": 8,
+    "fields": {
+      "data_da_consulta": "2022-02-27",
+      "hospital": "Caxtilho Cruz - Roraima",
+      "paciente": 9,
+      "horario_da_consulta": "19:15",
+      "acompanhante": "Sara Pacheco",
+      "local_de_espera": "Prefeitura"
+    }
+  },
+  {
+    "model": "logistica.Consulta",
+    "pk": 9,
+    "fields": {
+      "data_da_consulta": "2020-02-27",
+      "hospital": "Santa Cruz - Canoinhas",
+      "paciente": 11,
+      "horario_da_consulta": "12:20",
+      "acompanhante": "Angelica Pereira",
+      "local_de_espera": "Posto Mallon"
+    }
+  },
+  {
+    "model": "logistica.Consulta",
+    "pk": 10,
+    "fields": {
+      "data_da_consulta": "2019-02-17",
+      "hospital": "Santa Cruz - Canoinhas",
+      "paciente": 6,
+      "horario_da_consulta": "15:30",
+      "acompanhante": "Patricia Bonete",
+      "local_de_espera": "SENAI"
+    }
+  },
+  {
+    "model": "logistica.Consulta",
+    "pk": 11,
+    "fields": {
+      "data_da_consulta": "2022-08-12",
+      "hospital": "Santa Cruz - Canoinhas",
+      "paciente": 1,
+      "horario_da_consulta": "01:30",
+      "acompanhante": "Rogerio Almeida",
+      "local_de_espera": "Pastelaria do Marcio"
+    }
+  },
+  {
+    "model": "logistica.Consulta",
+    "pk": 12,
+    "fields": {
+      "data_da_consulta": "2022-09-20",
+      "hospital": "UPPS - Porto Uniao",
+      "paciente": 4,
+      "horario_da_consulta": "17:20",
+      "acompanhante": "Alexandre Pastorius",
+      "local_de_espera": "Sagrado coração de Jesus"
+    }
   }
 ]

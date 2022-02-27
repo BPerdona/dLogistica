@@ -14,29 +14,29 @@
     </form>
 
     <table class="table">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Nome Completo</th>
-        <th>CPF</th>
-        <th>CNS</th>
-        <th>Telefone</th>
-    </tr>
-    </thead>
-    <tbody>
-        {% for paciente in pacientes %}
-            <tr>
-                <td>{{ paciente.id }}</td>
-                <td>
-                <a href="#"> {{ paciente.nome_completo }}</a>
-                </td>
-                <td>{{ paciente.cpf }}</td>
-                <td>{{ paciente.cns }}</td>
-                <td>{{ paciente.telefone }}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome Completo</th>
+            <th>CPF</th>
+            <th>CNS</th>
+            <th>Telefone</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for paciente in pacientes %}
+                <tr>
+                    <td>{{ paciente.id }}</td>
+                    <td>
+                    <a href="#"> {{ paciente.nome_completo }}</a>
+                    </td>
+                    <td>{{ paciente.cpf }}</td>
+                    <td>{{ paciente.cns }}</td>
+                    <td>{{ paciente.telefone }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">

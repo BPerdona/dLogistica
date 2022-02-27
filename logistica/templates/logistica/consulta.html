@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+    <form method="get" action="">
+        <div class="form-group row">
+            <div class="col-12">
+                <input class="form-control"
+                       type="search" value=""
+                       id="search-input"
+                       placeholder="Digite sua pesquisa"
+                       name="termo">
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Paciente</th>
+            <th>Hospital</th>
+            <th>Horario</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for consulta in consultas %}
+                <tr>
+                    <td>{{ consulta.id }}</td>
+                    <td>{{ consulta.data_da_consulta }}</td>
+                    <td>
+                        <a href="#"> {{ consulta.paciente.nome_completo }}</a>
+                    </td>
+                    <td>{{ consulta.hospital }}</td>
+                    <td>{{ consulta.horario_da_consulta }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if consultas.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ consulta.previous_page_number }}">Anterior</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="">Anterior</a>
+                </li>
+            {% endif %}
+            {% for pagina in consultas.paginator.page_range %}
+            {% if consultas.number == pagina %}
+                <li class="page-item active">
+                    <a class="page-link" href="?page={{ pagina }}">{{pagina}}</a>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ pagina }}">{{pagina}}</a>
+                </li>
+            {% endif %}
+            {% endfor %}
+            {% if consultas.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ consultas.next_page_number }}">Próximo</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="">Próximo</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+
+{% endblock %}
