@@ -107,3 +107,11 @@ def ver_consulta(request, consulta_id):
     return render(request, 'logistica/ver_consulta.html',{
         'consulta': consulta
     })
+
+def ver_paciente(request, paciente_id):
+    paciente = get_object_or_404(Paciente, id=paciente_id)
+    if not paciente.status_tupla:
+        raise Http404
+    return render(request, 'logistica/ver_paciente.html',{
+        'paciente': paciente
+    })

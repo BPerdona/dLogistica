@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+    <div class="card border-dark mb-3">
+        <div class="card-header bg-transparent"><h1>Nome completo: {{ paciente.nome_completo }}</h1></div>
+
+        <div class="card-body">
+            <p><strong>RG:</strong> {{ paciente.rg }}</p>
+            <p><strong>CPF:</strong> {{ paciente.cpf }}</p>
+            <p><strong>CNS:</strong> {{ paciente.cns }}</p>
+            <p><strong>Data de nascimento:</strong> {{ paciente.data_de_nascimento }}</p>
+            <p><strong>Telefone:</strong> {{ paciente.telefone }}</p>
+        </div>
+    </div>
+
+{% endblock %}
