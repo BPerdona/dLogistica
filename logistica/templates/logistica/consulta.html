@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 
+    <h1 style="text-align: center;">Listagem de Consultas</h1>
+    <br><br>
+
     <form method="get" action="{% url 'busca_consulta' %}">
         <div class="form-group row">
             <div class="col-12">
@@ -28,13 +31,21 @@
                 <tbody>
                     {% for consulta in consultas %}
                         <tr>
-                            <td>{{ consulta.id }}</td>
-                            <td>{{ consulta.data_da_consulta }}</td>
+                            <td>
+                                <a href="{% url 'ver_consulta' consulta.id %}"> {{ consulta.id }}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'ver_consulta' consulta.id %}"> {{ consulta.data_da_consulta }}</a>
+                            </td>
                             <td>
                                 <a href="{% url 'ver_consulta' consulta.id %}"> {{ consulta.paciente.nome_completo }}</a>
                             </td>
-                            <td>{{ consulta.hospital }}</td>
-                            <td>{{ consulta.horario_da_consulta }}</td>
+                            <td>
+                                <a href="{% url 'ver_consulta' consulta.id %}"> {{ consulta.hospital }}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'ver_consulta' consulta.id %}"> {{ consulta.horario_da_consulta }}</a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

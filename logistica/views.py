@@ -112,6 +112,9 @@ def ver_paciente(request, paciente_id):
     paciente = get_object_or_404(Paciente, id=paciente_id)
     if not paciente.status_tupla:
         raise Http404
+    consultas = Consulta.objects.filter(paciente_id=paciente)
+
     return render(request, 'logistica/ver_paciente.html',{
-        'paciente': paciente
+        'paciente': paciente,
+        'consulta': consultas
     })

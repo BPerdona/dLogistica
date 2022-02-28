@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block conteudo %}
+    
+    <h1 style="text-align: center;">Listagem de Pacientes</h1>
+    <br><br>
 
     <form method="get" action="{% url 'busca_paciente' %}">
         <div class="form-group row">
@@ -28,13 +31,21 @@
                 <tbody>
                     {% for paciente in pacientes %}
                         <tr>
-                            <td>{{ paciente.id }}</td>
+                            <td>
+                                <a href="{% url 'ver_paciente' paciente.id %}"> {{ paciente.id }}</a>
+                            </td>
                             <td>
                                 <a href="{% url 'ver_paciente' paciente.id %}"> {{ paciente.nome_completo }}</a>
                             </td>
-                            <td>{{ paciente.cpf }}</td>
-                            <td>{{ paciente.cns }}</td>
-                            <td>{{ paciente.telefone }}</td>
+                            <td>
+                                <a href="{% url 'ver_paciente' paciente.id %}"> {{ paciente.cpf }}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'ver_paciente' paciente.id %}"> {{ paciente.cns }}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'ver_paciente' paciente.id %}"> {{ paciente.telefone }}</a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
