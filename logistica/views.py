@@ -2,8 +2,7 @@ from django.http import Http404
 from django.shortcuts import redirect, render, get_object_or_404
 from logistica.models import Paciente, Consulta, Viagem, Motorista
 from django.core.paginator import Paginator
-from django.db.models import Q, Value
-from django.db.models.functions import Concat
+from django.db.models import Q
 
 def index(request):
     qtd_pacientes = Paciente.objects.count()
@@ -118,3 +117,40 @@ def ver_paciente(request, paciente_id):
         'paciente': paciente,
         'consulta': consultas
     })
+
+def cadastroPaciente(request):
+    if request.method != 'POST':
+        return render(request, 'logistica/cadastroPaciente.html')
+    
+    Cnome = request.POST.get('nome')
+    Crg = request.POST.get('rg')
+    Ccpf = request.POST.get('cpf')
+    Cdata_nascimento = request.POST.get('data')
+    Ccns = request.POST.get('cns')
+    Ctelefone = request.POST.get('telefone')
+
+    #Validando todos os campos
+    if not Cnome or not Crg or not Ccpf or not Cdata_nascimento or not Ccns or not Ctelefone:
+        return render(request, 'logistica/cadastroPaciente.html')
+        #adicionar mensagem de retorno fracasso
+
+    #Validando para ver se o nome já existe
+    if Paciente.objects.filter(nome_completo=Cnome).exists():
+        return render(request, 'logistica/cadastroPaciente.html')
+        #adicionar mensagem de retorno fracasso
+
+    #Validando para ver se o CPF já existe
+    if Paciente.objects.filter(cpf=Ccpf).exists():
+        return render(request, 'logistica/cadastroPaciente.html')
+        #adicionar mensagem de retorno fracasso
+
+    #Validando para ver se o RG já existe
+    if Paciente.objects.filter(rg=Crg).exists():
+        return render(request, 'logistica/cadastroPaciente.html')
+        #adicionar mensagem de retorno fracasso
+
+    #Salvando objeto
+    obj = Paciente.objects.create(nome_completo=Cnome, rg=Crg, cpf=Ccpf, cns=Ccns, data_de_nascimento=Cdata_nascimento, telefone=Ctelefone)
+    paciente = get_object_or_404(Paciente, nome_completo=Cnome)
+    return redirect('ver_paciente', paciente.pk)
+    #adicionar mensagem de retorno sucesso
