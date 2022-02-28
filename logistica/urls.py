@@ -20,4 +20,5 @@ urlpatterns += [
     path('consulta/', views.listConsulta, name='consulta'),
     path('consulta/<int:consulta_id>', views.ver_consulta, name='ver_consulta'),
     path('consulta/busca', views.buscaConsulta, name='busca_consulta'),
+    path('consulta/cadastro', views.cadastroConsulta, name='cadastro_consulta'),
 ]

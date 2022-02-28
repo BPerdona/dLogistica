@@ -152,5 +152,40 @@ def cadastroPaciente(request):
     #Salvando objeto
     obj = Paciente.objects.create(nome_completo=Cnome, rg=Crg, cpf=Ccpf, cns=Ccns, data_de_nascimento=Cdata_nascimento, telefone=Ctelefone)
     paciente = get_object_or_404(Paciente, nome_completo=Cnome)
-    return redirect('ver_paciente', paciente.pk)
     #adicionar mensagem de retorno sucesso
+    return redirect('ver_paciente', paciente.pk)
+
+def cadastroConsulta(request):
+    pacientes = Paciente.objects.filter(
+        status_tupla=True
+    )
+    if request.method != 'POST':
+        return render(request, 'logistica/cadastroConsulta.html', {
+            'pacientes' : pacientes
+        })
+    
+    Cdata = request.POST.get('data')
+    Chospital = request.POST.get('hospital')
+    Cpaciente = request.POST.get('paciente')
+    Chorario = request.POST.get('horario')
+    Cacompanhante = request.POST.get('acompanhante')
+    Clocal = request.POST.get('local')
+
+    #Cast de string para Int
+    if Cpaciente == "Escolha":
+        return render(request, 'logistica/cadastroConsulta.html', {
+            'pacientes': pacientes
+        })
+    Cpaciente = int(Cpaciente)
+
+    pacienteSele = get_object_or_404(Paciente, id=Cpaciente)
+
+    #Validando todos os campos
+    if not Cdata or not Chospital or not Cpaciente or not Chorario or not Cacompanhante or not Clocal:
+        return render(request, 'logistica/cadastroConsulta.html', {
+            'pacientes': pacientes
+        })
+        #adicionar mensagem de retorno fracasso
+
+    obj = Consulta.objects.create(data_da_consulta=Cdata, hospital=Chospital, paciente=pacienteSele, horario_da_consulta=Chorario, acompanhante=Cacompanhante, local_de_espera=Clocal)
+    return redirect('ver_paciente', Cpaciente)
