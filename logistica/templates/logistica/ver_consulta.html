@@ -2,9 +2,7 @@
 {% block conteudo %}
 
     <div class="card border-dark mb-3">
-        <div class="card-header bg-transparent"><h1>Paciente: {{ consulta.paciente.nome_completo }}</h1></div>
-        {# <div class="card-header bg-transparent"><h1><a href="{% url 'index' %}">Paciente: {{ consulta.paciente.nome_completo }}</a></h1></div> #}
-        {# Colocar o link para os detalhes do paciente, ao clicar no nome do paciente #}
+        <div class="card-header bg-transparent"><h1><a href="{% url 'ver_paciente' consulta.paciente_id %}">Paciente: {{ consulta.paciente.nome_completo }}</a></h1></div>
 
         <div class="card-body">
             <p><strong>Data da Consulta: </strong>{{ consulta.data_da_consulta }}</p>

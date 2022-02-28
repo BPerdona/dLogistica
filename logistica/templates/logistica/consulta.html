@@ -13,30 +13,34 @@
         </div>
     </form>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Data</th>
-            <th>Paciente</th>
-            <th>Hospital</th>
-            <th>Horario</th>
-        </tr>
-        </thead>
-        <tbody>
-            {% for consulta in consultas %}
-                <tr>
-                    <td>{{ consulta.id }}</td>
-                    <td>{{ consulta.data_da_consulta }}</td>
-                    <td>
-                        <a href="{% url 'ver_consulta' consulta.id %}"> {{ consulta.paciente.nome_completo }}</a>
-                    </td>
-                    <td>{{ consulta.hospital }}</td>
-                    <td>{{ consulta.horario_da_consulta }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="card border-dark mb-3">
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Data</th>
+                        <th>Paciente</th>
+                        <th>Hospital</th>
+                        <th>Horario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for consulta in consultas %}
+                        <tr>
+                            <td>{{ consulta.id }}</td>
+                            <td>{{ consulta.data_da_consulta }}</td>
+                            <td>
+                                <a href="{% url 'ver_consulta' consulta.id %}"> {{ consulta.paciente.nome_completo }}</a>
+                            </td>
+                            <td>{{ consulta.hospital }}</td>
+                            <td>{{ consulta.horario_da_consulta }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
