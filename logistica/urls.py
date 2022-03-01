@@ -23,4 +23,6 @@ urlpatterns += [
     path('consulta/<int:consulta_id>', views.ver_consulta, name='ver_consulta'),
     path('consulta/busca', views.buscaConsulta, name='busca_consulta'),
     path('consulta/cadastro', views.cadastroConsulta, name='cadastro_consulta'),
+    path('consulta/<int:consulta_id>/apagar/', views.apagarConsulta, name='apagar_consulta'),
+    path('consulta/<int:consulta_id>/atualizar/', views.atualizarConsulta, name='atualizar_consulta'),
 ]

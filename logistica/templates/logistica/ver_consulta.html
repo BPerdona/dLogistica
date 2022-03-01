@@ -27,6 +27,11 @@
             <p><strong>Acompanhante:</strong> {{ consulta.acompanhante }}</p>
             <p><strong>Local de espera:</strong> {{ consulta.local_de_espera }}</p>
         </div>
+        <div class="card-footer">
+            <a href=" {% url  'atualizar_consulta' consulta.id  %} " class="btn btn-primary" role="button">Atualizar</a>
+            <a href=" {% url  'apagar_consulta' consulta.id %} " class="btn btn-danger" role="button">Excluir</a>
+        </div>
     </div>
+
 
 {% endblock %}

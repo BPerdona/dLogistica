@@ -115,7 +115,7 @@ def ver_paciente(request, paciente_id):
     paciente = get_object_or_404(Paciente, id=paciente_id)
     if not paciente.status_tupla:
         raise Http404
-    consultas = Consulta.objects.filter(paciente_id=paciente)
+    consultas = Consulta.objects.filter(paciente_id=paciente, status_tupla=True)
 
     return render(request, 'logistica/ver_paciente.html',{
         'paciente': paciente,
@@ -268,3 +268,12 @@ def atualizarPaciente(request, paciente_id):
     obj.save()
     messages.add_message(request, messages.SUCCESS, 'Paciente atualizado com sucesso!')
     return redirect('ver_paciente', paciente.pk)
+
+def apagarConsulta(request, consulta_id):
+    obj = Consulta.objects.get(pk = consulta_id)
+    obj.status_tupla = False
+    obj.save()
+    return redirect ('consulta')
+
+def atualizarConsulta(request, consulta_id):
+    pass
