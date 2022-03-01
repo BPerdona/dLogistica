@@ -165,7 +165,7 @@ def cadastroPaciente(request):
 
     #Salvando objeto
     obj = Paciente.objects.create(nome_completo=Cnome, rg=Crg, cpf=Ccpf, cns=Ccns, data_de_nascimento=Cdata_nascimento, telefone=Ctelefone)
-    paciente = get_object_or_404(Paciente, nome_completo=Cnome)
+    paciente = get_object_or_404(Paciente, nome_completo=Cnome, rg=Crg, cpf=Ccpf)
     messages.add_message(request, messages.SUCCESS, 'Paciente cadastrado com sucesso!')
     return redirect('ver_paciente', paciente.pk)
 
@@ -205,7 +205,7 @@ def cadastroConsulta(request):
     obj = Consulta.objects.create(data_da_consulta=Cdata, hospital=Chospital, paciente=pacienteSele, horario_da_consulta=Chorario, acompanhante=Cacompanhante, local_de_espera=Clocal)
     messages.add_message(request, messages.SUCCESS, 'Consulta cadastrada com sucesso.')
     return redirect('ver_paciente', Cpaciente)
-
+ 
 def apagarPaciente(request, paciente_id):
     obj = Paciente.objects.get(pk = paciente_id)
     obj.status_tupla = False
