@@ -6,7 +6,19 @@
     {% include 'parciais/_messages.html' %}
 
     <div class="card border-dark mb-3">
-        <div class="card-header bg-transparent"><h2><a href="{% url 'ver_paciente' consulta.paciente_id %}">Consulta de: {{ consulta.paciente.nome_completo }}</a></h2></div>
+        <div class="card-header bg-transparent">
+            <h2>
+                {% if consulta.paciente.status_tupla %}
+                    <a href="{% url 'ver_paciente' consulta.paciente_id %}">
+                        Consulta de: {{ consulta.paciente.nome_completo }}
+                    </a>
+                {% else %}
+                    <p>
+                        Consulta de: {{ consulta.paciente.nome_completo }}
+                    </p>
+                {% endif %}
+            </h2>
+        </div>
 
         <div class="card-body">
             <p><strong>Data da Consulta: </strong>{{ consulta.data_da_consulta }}</p>

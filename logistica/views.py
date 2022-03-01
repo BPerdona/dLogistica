@@ -6,8 +6,6 @@ from django.db.models import Q
 from django.contrib import messages
 
 def index(request):
-    messages.add_message(request, messages.ERROR, 'DEU RUIM PIA')
-
     qtd_pacientes = Paciente.objects.count()
     qtd_consultas = Consulta.objects.count()
     qtd_viagens = Viagem.objects.count()
@@ -106,6 +104,9 @@ def ver_consulta(request, consulta_id):
     consulta = get_object_or_404(Consulta, id=consulta_id)
     if not consulta.status_tupla:
         raise Http404
+    if not consulta.paciente.status_tupla:
+        messages.add_message(request, messages.WARNING, 'Esse usuário foi excluído!')
+
     return render(request, 'logistica/ver_consulta.html',{
         'consulta': consulta
     })
@@ -204,3 +205,12 @@ def cadastroConsulta(request):
     obj = Consulta.objects.create(data_da_consulta=Cdata, hospital=Chospital, paciente=pacienteSele, horario_da_consulta=Chorario, acompanhante=Cacompanhante, local_de_espera=Clocal)
     messages.add_message(request, messages.SUCCESS, 'Consulta cadastrada com sucesso.')
     return redirect('ver_paciente', Cpaciente)
+
+def apagarPaciente(request, paciente_id):
+    obj = Paciente.objects.get(pk = paciente_id)
+    obj.status_tupla = False
+    obj.save()
+    return redirect ('paciente')
+
+def atualizarPaciente(request, paciente_id):
+    pass

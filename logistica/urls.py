@@ -13,6 +13,8 @@ urlpatterns += [
     path('paciente/<int:paciente_id>', views.ver_paciente, name='ver_paciente'),
     path('paciente/busca/', views.buscaPaciente, name='busca_paciente'),
     path('paciente/cadastro/', views.cadastroPaciente, name='cadastro_paciente'),
+    path('paciente/<int:paciente_id>/apagar/',views.apagarPaciente, name='apagar_paciente'),
+    path('paciente/<int:paciente_id>/atualizar',views.atualizarPaciente, name='atualizar_paciente'),
 ]
 
 #Urls de consulta

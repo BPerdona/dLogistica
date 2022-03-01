@@ -15,6 +15,11 @@
             <p><strong>Data de nascimento:</strong> {{ paciente.data_de_nascimento }}</p>
             <p><strong>Telefone:</strong> {{ paciente.telefone }}</p>
         </div>
+
+        <div class="card-footer">
+            <a href=" {# {% url  'atualizar_paciente' paciente.id  %}/ #} " class="btn btn-primary" role="button">Atualizar</a>
+            <a href=" {% url  'apagar_paciente' paciente.id %} " class="btn btn-danger" role="button">Excluir</a>
+        </div>
     </div>
 
     <div class="card border-dark mb-3">
