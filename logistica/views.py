@@ -213,4 +213,48 @@ def apagarPaciente(request, paciente_id):
     return redirect ('paciente')
 
 def atualizarPaciente(request, paciente_id):
-    pass
+    paciente = get_object_or_404(Paciente, id=paciente_id)
+    if request.method != 'POST':
+        return render(request, 'logistica/atualizarPaciente.html', {
+            'paciente':paciente
+        })
+
+    Unome = request.POST.get('nome')
+    Urg = request.POST.get('rg')
+    Ucpf = request.POST.get('cpf')
+    Udata_de_nascimento = request.POST.get('data')
+    Ucns = request.POST.get('cns')
+    Utelefone = request.POST.get('telefone')
+
+    # Validando todos os campos
+    if not Unome or not Urg or not Ucpf or not Udata_de_nascimento or not Ucns or not Utelefone:
+        messages.add_message(request, messages.ERROR, 'Todos os campos devem ser preenchidos')
+        return redirect('atualizar_paciente', paciente_id)
+
+    # Validando para ver se o nome já existe
+    if Paciente.objects.filter(nome_completo=Unome, status_tupla=True).exists():
+        messages.add_message(request, messages.ERROR, 'Esse nome de usuario já existe no sistema!')
+        return redirect('atualizar_paciente', paciente_id)
+
+    # Validando para ver se o CPF já existe
+    if Paciente.objects.filter(cpf=Ucpf, status_tupla=True).exists():
+        messages.add_message(request, messages.ERROR, 'Esse CPF já está cadastrado no sistema')
+        return redirect('atualizar_paciente', paciente_id)
+
+    # Validando para ver se o RG já existe
+    if Paciente.objects.filter(rg=Urg, status_tupla=True).exists():
+        messages.add_message(request, messages.ERROR, 'Esse RG já está cadastrado no sistema')
+        return redirect('atualizar_paciente', paciente_id)
+
+    # Salvando objeto
+    obj = Paciente.objects.get(pk=paciente_id)
+    obj.nome_completo = Unome
+    obj.rg = Urg
+    obj.cpf = Ucpf
+    obj.cns = Ucns
+    obj.data_de_nascimento = Udata_de_nascimento
+    obj.telefone = Utelefone
+
+    obj.save()
+    messages.add_message(request, messages.SUCCESS, 'Paciente atualizado com sucesso!')
+    return redirect('ver_paciente', paciente.pk)

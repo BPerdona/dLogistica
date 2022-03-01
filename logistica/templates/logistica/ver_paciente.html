@@ -17,7 +17,7 @@
         </div>
 
         <div class="card-footer">
-            <a href=" {# {% url  'atualizar_paciente' paciente.id  %}/ #} " class="btn btn-primary" role="button">Atualizar</a>
+            <a href=" {% url  'atualizar_paciente' paciente.id  %} " class="btn btn-primary" role="button">Atualizar</a>
             <a href=" {% url  'apagar_paciente' paciente.id %} " class="btn btn-danger" role="button">Excluir</a>
         </div>
     </div>

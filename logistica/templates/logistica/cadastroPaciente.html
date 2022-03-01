@@ -5,7 +5,7 @@
 
 {% include 'parciais/_messages.html' %}
 
-<form method="POST" aciton="{% url 'cadastro_paciente'%}">
+<form method="POST" action="{% url 'cadastro_paciente'%}">
     {% csrf_token %}
     <div class="form-group">
         <label>Nome Completo</label>
