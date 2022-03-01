@@ -27,7 +27,7 @@ def listPaciente(request):
     )
 
     #Paginação
-    paginator = Paginator(pacientes, 10)
+    paginator = Paginator(pacientes, 15)
     page = request.GET.get('page')
     pacientes = paginator.get_page(page)
 
@@ -51,7 +51,7 @@ def buscaPaciente(request):
     )
 
     #Paginação
-    paginator = Paginator(pacientes, 10)
+    paginator = Paginator(pacientes, 15)
     page = request.GET.get('page')
     pacientes = paginator.get_page(page)
 
@@ -67,7 +67,7 @@ def listConsulta(request):
     )
 
     #Paginação
-    paginator = Paginator(consultas, 10)
+    paginator = Paginator(consultas, 15)
     page = request.GET.get('page')
     consultas = paginator.get_page(page)
 
@@ -91,7 +91,7 @@ def buscaConsulta(request):
     )
     
     #Paginação
-    paginator = Paginator(consultas, 10)
+    paginator = Paginator(consultas, 15)
     page = request.GET.get('page')
     consultas = paginator.get_page(page)
 
@@ -226,28 +226,33 @@ def atualizarPaciente(request, paciente_id):
     Ucns = request.POST.get('cns')
     Utelefone = request.POST.get('telefone')
 
-    # Validando todos os campos
+    #Criando objeto original
+    obj = Paciente.objects.get(pk=paciente_id)
+
+    # Validando campos
     if not Unome or not Urg or not Ucpf or not Udata_de_nascimento or not Ucns or not Utelefone:
         messages.add_message(request, messages.ERROR, 'Todos os campos devem ser preenchidos')
         return redirect('atualizar_paciente', paciente_id)
 
     # Validando para ver se o nome já existe
     if Paciente.objects.filter(nome_completo=Unome, status_tupla=True).exists():
-        messages.add_message(request, messages.ERROR, 'Esse nome de usuario já existe no sistema!')
-        return redirect('atualizar_paciente', paciente_id)
+        if not obj.nome_completo == Unome:
+            messages.add_message(request, messages.ERROR, 'Esse nome de usuario já existe no sistema!')
+            return redirect('atualizar_paciente', paciente_id)
 
     # Validando para ver se o CPF já existe
     if Paciente.objects.filter(cpf=Ucpf, status_tupla=True).exists():
-        messages.add_message(request, messages.ERROR, 'Esse CPF já está cadastrado no sistema')
-        return redirect('atualizar_paciente', paciente_id)
+        if not obj.cpf == Ucpf:
+            messages.add_message(request, messages.ERROR, 'Esse CPF já está cadastrado no sistema')
+            return redirect('atualizar_paciente', paciente_id)
 
     # Validando para ver se o RG já existe
     if Paciente.objects.filter(rg=Urg, status_tupla=True).exists():
-        messages.add_message(request, messages.ERROR, 'Esse RG já está cadastrado no sistema')
-        return redirect('atualizar_paciente', paciente_id)
+        if not obj.rg == Urg:
+            messages.add_message(request, messages.ERROR, 'Esse RG já está cadastrado no sistema')
+            return redirect('atualizar_paciente', paciente_id)
 
     # Salvando objeto
-    obj = Paciente.objects.get(pk=paciente_id)
     obj.nome_completo = Unome
     obj.rg = Urg
     obj.cpf = Ucpf
