@@ -5,10 +5,12 @@
         <div class="card-header bg-transparent text-danger"><h1>AVISO</h1></div>
         <div class="card-body">
             <form action='.' method='POST'>{% csrf_token %}
-                <h2>Realmente deseja apagar o paciente: {{ paciente.nome_completo }}</h2>
+                <h1>Realmente deseja apagar a consulta: </h1>
+                <h3>Data: {{ consulta.data_da_consulta }}</h3>
+                <h3>Paciente: {{ consulta.paciente.nome_completo }}</h3>
                 <br>
                 <input class="btn btn-danger btn-lg" type="submit" value="Sim">
-                <a class="btn btn-primary btn-lg" href="{% url 'ver_paciente' paciente.id %}" role="button"
+                <a class="btn btn-primary btn-lg" href="{% url 'ver_consulta' consulta.id %}" role="button"
                    style="margin-left: 1%">Não</a>
             </form>
         </div>

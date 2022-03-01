@@ -270,6 +270,11 @@ def atualizarPaciente(request, paciente_id):
     return redirect('ver_paciente', paciente.pk)
 
 def apagarConsulta(request, consulta_id):
+    consulta = get_object_or_404(Consulta, id=consulta_id)
+    if request.method != 'POST':
+        return render(request, 'logistica/consulta_apagar.html',{
+            'consulta': consulta
+        })
     obj = Consulta.objects.get(pk = consulta_id)
     obj.status_tupla = False
     obj.save()
