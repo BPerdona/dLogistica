@@ -134,6 +134,10 @@ def cadastroPaciente(request):
         return render(request, 'logistica/cadastroPaciente.html')
         #adicionar mensagem de retorno fracasso
 
+    if not Crg.isnumeric() or not Ccpf.isnumeric() or not Ccns.isnumeric():
+        return render(request, 'logistica/cadastroPaciente.html')
+        # adicionar mensagem de retorno fracasso
+
     #Validando para ver se o nome já existe
     if Paciente.objects.filter(nome_completo=Cnome).exists():
         return render(request, 'logistica/cadastroPaciente.html')
