@@ -3,8 +3,11 @@ from django.shortcuts import redirect, render, get_object_or_404
 from logistica.models import Paciente, Consulta, Viagem, Motorista
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib import messages
 
 def index(request):
+    messages.add_message(request, messages.ERROR, 'DEU RUIM PIA')
+
     qtd_pacientes = Paciente.objects.count()
     qtd_consultas = Consulta.objects.count()
     qtd_viagens = Viagem.objects.count()
@@ -81,7 +84,7 @@ def buscaConsulta(request):
 
     #Verificação de Termo
     if termo is None or not termo:
-        return redirect('paciente')
+        return redirect('consulta')
 
     #Filtragem
     consultas = Consulta.objects.order_by('-id').filter(
@@ -131,34 +134,41 @@ def cadastroPaciente(request):
 
     #Validando todos os campos
     if not Cnome or not Crg or not Ccpf or not Cdata_nascimento or not Ccns or not Ctelefone:
+        messages.add_message(request, messages.ERROR, 'Todos os campos devem ser preenchidos')
         return render(request, 'logistica/cadastroPaciente.html')
-        #adicionar mensagem de retorno fracasso
+
+    if not Crg.isnumeric() or not Ccpf.isnumeric() or not Ccns.isnumeric():
+        messages.add_message(request, messages.ERROR, 'Digite apenas numeros nos campos: "RG" "CPF" "CNS".')
+        return render(request, 'logistica/cadastroPaciente.html')
 
     #Validando para ver se o nome já existe
-    if Paciente.objects.filter(nome_completo=Cnome).exists():
+    if Paciente.objects.filter(nome_completo=Cnome, status_tupla=True).exists():
+        messages.add_message(request, messages.ERROR, 'Esse nome de usuario já existe no sistema!')
         return render(request, 'logistica/cadastroPaciente.html')
-        #adicionar mensagem de retorno fracasso
+        
 
     #Validando para ver se o CPF já existe
-    if Paciente.objects.filter(cpf=Ccpf).exists():
+    if Paciente.objects.filter(cpf=Ccpf, status_tupla=True).exists():
+        messages.add_message(request, messages.ERROR, 'Esse CPF já está cadastrado no sistema')
         return render(request, 'logistica/cadastroPaciente.html')
-        #adicionar mensagem de retorno fracasso
+
 
     #Validando para ver se o RG já existe
-    if Paciente.objects.filter(rg=Crg).exists():
+    if Paciente.objects.filter(rg=Crg, status_tupla=True).exists():
+        messages.add_message(request, messages.ERROR, 'Esse RG já está cadastrado no sistema')
         return render(request, 'logistica/cadastroPaciente.html')
-        #adicionar mensagem de retorno fracasso
 
     #Salvando objeto
     obj = Paciente.objects.create(nome_completo=Cnome, rg=Crg, cpf=Ccpf, cns=Ccns, data_de_nascimento=Cdata_nascimento, telefone=Ctelefone)
     paciente = get_object_or_404(Paciente, nome_completo=Cnome)
-    #adicionar mensagem de retorno sucesso
+    messages.add_message(request, messages.SUCCESS, 'Paciente cadastrado com sucesso!')
     return redirect('ver_paciente', paciente.pk)
 
 def cadastroConsulta(request):
     pacientes = Paciente.objects.filter(
         status_tupla=True
     )
+
     if request.method != 'POST':
         return render(request, 'logistica/cadastroConsulta.html', {
             'pacientes' : pacientes
@@ -182,10 +192,11 @@ def cadastroConsulta(request):
 
     #Validando todos os campos
     if not Cdata or not Chospital or not Cpaciente or not Chorario or not Cacompanhante or not Clocal:
+        messages.add_message(request, messages.ERROR, 'Todos os campos devem ser preenchidos.')
         return render(request, 'logistica/cadastroConsulta.html', {
             'pacientes': pacientes
         })
-        #adicionar mensagem de retorno fracasso
 
     obj = Consulta.objects.create(data_da_consulta=Cdata, hospital=Chospital, paciente=pacienteSele, horario_da_consulta=Chorario, acompanhante=Cacompanhante, local_de_espera=Clocal)
+    messages.add_message(request, messages.SUCCESS, 'Consulta cadastrada com sucesso.')
     return redirect('ver_paciente', Cpaciente)

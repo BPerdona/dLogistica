@@ -2,7 +2,8 @@
 
 {% block conteudo %}
 <h1 style="text-align: center;">Cadastro de Paciente</h1>
-<br>
+
+{% include 'parciais/_messages.html' %}
 
 <form method="POST" aciton="{% url 'cadastro_paciente'%}">
     {% csrf_token %}

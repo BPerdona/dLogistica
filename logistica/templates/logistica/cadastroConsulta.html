@@ -4,6 +4,8 @@
 <h1 style="text-align: center;">Cadastro de Consulta</h1>
 <br>
 
+{% include 'parciais/_messages.html' %}
+
 <form method="POST" aciton="{% url 'cadastro_consulta'%}">
     {% csrf_token %}
     <div class="form-row">
@@ -22,6 +24,7 @@
         {% for paciente in pacientes %}
         <option value="{{ paciente.id }}">{{ paciente.nome_completo }}</option>
         {% endfor %}
+        
     </select>
     <br><br>
     <div class="form-row">
