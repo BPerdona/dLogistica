@@ -207,7 +207,12 @@ def cadastroConsulta(request):
     return redirect('ver_paciente', Cpaciente)
  
 def apagarPaciente(request, paciente_id):
-    obj = Paciente.objects.get(pk = paciente_id)
+    paciente = get_object_or_404(Paciente, id=paciente_id)
+    if request.method != 'POST':
+        return render(request, 'logistica/paciente_apagar.html',{
+            'paciente': paciente
+        })
+    obj = Paciente.objects.get(pk=paciente_id)
     obj.status_tupla = False
     obj.save()
     return redirect ('paciente')

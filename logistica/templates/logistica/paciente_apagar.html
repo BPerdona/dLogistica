@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+
+    <div class="card border-dark mb-3">
+        <div class="card-header bg-transparent text-danger"><h1>AVISO</h1></div>
+        <div class="card-body">
+            <form action='.' method='POST'>{% csrf_token %}
+                <h2>Realmente deseja apagar o paciente: {{ paciente.nome_completo }}</h2>
+                <br>
+                    <input class="btn btn-danger btn-lg" type="submit" value="Sim">
+                    <a class="btn btn-primary btn-lg" href="{% url 'ver_paciente' paciente.id %}" role="button" style="margin-left: 1%">Não</a>
+            </form>
+        </div>
+
+        <div class="card-footer">
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
