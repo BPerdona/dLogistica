@@ -141,6 +141,10 @@ def cadastroPaciente(request):
         messages.add_message(request, messages.ERROR, 'Digite apenas numeros nos campos: "RG" "CPF" "CNS".')
         return render(request, 'logistica/cadastroPaciente.html')
 
+    if not Crg.isnumeric() or not Ccpf.isnumeric() or not Ccns.isnumeric():
+        return render(request, 'logistica/cadastroPaciente.html')
+        # adicionar mensagem de retorno fracasso
+
     #Validando para ver se o nome já existe
     if Paciente.objects.filter(nome_completo=Cnome, status_tupla=True).exists():
         messages.add_message(request, messages.ERROR, 'Esse nome de usuario já existe no sistema!')

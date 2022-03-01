@@ -8,17 +8,17 @@ Nesse repositório será desenvolvido um sistema de gerenciamento de pacientes e
 ## Objetivos
 
 ### Prioridade/Obrigatório
-- (X) Criação do models;
-- (X) Criar template base;
-- (X) Implementar listagem de Paciente;
+- (V) Criação do models;
+- (V) Criar template base;
+- (V) Implementar listagem de Paciente;
 - (X) Desenvolver o CRUD para Paciente;
-- (X) Implementar a visualização dos detalhes de Paciente;
+- (V) Implementar a visualização dos detalhes de Paciente;
 - (X) Implementar CRUD de Consulta;
-- (X) Implementar a listagem de todas as Consultas;
-- (X) Implementar a visualização dos detalhes da Consulta;
-- (X) Adicionar a Paciente-Detalhes a visualização de todas as consultar;
-- (X) Implementar Paginação na listagem de Pacientes e Consulta;
-- (X) Implemetar método de pesquisa por campos;
+- (V) Implementar a listagem de todas as Consultas;
+- (V) Implementar a visualização dos detalhes da Consulta;
+- (V) Adicionar a Paciente-Detalhes a visualização de todas as consultas;
+- (V) Implementar Paginação na listagem de Pacientes e Consulta;
+- (V) Implemetar método de pesquisa por campos;
 
 ### Features Adicionais
 - (X) Implementar o CRUD para Viagem;
