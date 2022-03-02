@@ -276,4 +276,42 @@ def apagarConsulta(request, consulta_id):
     return redirect ('consulta')
 
 def atualizarConsulta(request, consulta_id):
-    pass
+    consulta = get_object_or_404(Consulta, id=consulta_id)
+    pacientes = Paciente.objects.filter(
+        status_tupla=True
+    )
+    if request.method != 'POST':
+        return render(request, 'logistica/atualizarConsulta.html', {
+            'consulta' : consulta,
+            'pacientes': pacientes
+        })
+
+    Udata = request.POST.get('data')
+    Uhospital = request.POST.get('hospital')
+    Upaciente = request.POST.get('paciente')
+    Uhorario = request.POST.get('horario')
+    Uacompanhante = request.POST.get('acompanhante')
+    Ulocal = request.POST.get('local')
+
+    Upaciente = int(Upaciente)
+
+    #Validando todos os campos
+    if not Udata or not Uhospital or not Upaciente or not Uhorario or not Uacompanhante or not Ulocal:
+        messages.add_message(request, messages.ERROR, 'Todos os campos devem ser preenchidos.')
+        return render(request, 'logistica/atualizarConsulta.html', {
+            'consulta' : consulta,
+            'pacientes': pacientes
+        })
+
+    objPaciente = get_object_or_404(Paciente, pk=Upaciente)
+
+    consulta.data_da_consulta = Udata
+    consulta.hospital = Uhospital
+    consulta.paciente = objPaciente
+    consulta.horario_da_consulta = Uhorario
+    consulta.acompanhante = Uacompanhante
+    consulta.local_de_espera = Ulocal
+    consulta.save()
+    messages.add_message(request, messages.SUCCESS, 'Consulta atualizada com sucesso.')
+    return redirect('ver_consulta', consulta_id)
+    
