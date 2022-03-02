@@ -9,7 +9,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>Data da Consulta</label>
-            <input type="date" name="data" value="{{ consulta.data_da_consulta }}" class="form-control">
+            <input type="date" name="data" value="{{ consulta.data_da_consulta|date:'Y-m-d' }}" class="form-control">
         </div>
         <div class="form-group col-md-6">
             <label>Hospital</label>
