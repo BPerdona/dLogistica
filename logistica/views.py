@@ -4,7 +4,9 @@ from logistica.models import Paciente, Consulta, Viagem, Motorista
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required(redirect_field_name='login')
 def index(request):
     qtd_pacientes = Paciente.objects.filter(status_tupla=True).count()
     qtd_consultas = Consulta.objects.filter(status_tupla=True).count()
@@ -16,6 +18,7 @@ def index(request):
 
     return render(request, 'logistica/index.html', context)
 
+@login_required(redirect_field_name='login')
 def listPaciente(request):
     #Filtragem
     pacientes = Paciente.objects.order_by('-id').filter(
@@ -32,6 +35,7 @@ def listPaciente(request):
         'pacientes' : pacientes
     })
 
+@login_required(redirect_field_name='login')
 def buscaPaciente(request):
     #Pegando o termo da URL de pesquisa
     termo = request.GET.get('termo')
@@ -56,6 +60,7 @@ def buscaPaciente(request):
         'pacientes' : pacientes
     })
 
+@login_required(redirect_field_name='login')
 def listConsulta(request):
     #Filtragem
     consultas = Consulta.objects.order_by('-id').filter(
@@ -72,6 +77,7 @@ def listConsulta(request):
         'consultas' : consultas
     })
 
+@login_required(redirect_field_name='login')
 def buscaConsulta(request):
     #Pegando o termo da URL de pesquisa
     termo = request.GET.get('termo')
@@ -96,6 +102,7 @@ def buscaConsulta(request):
         'consultas' : consultas
     })
 
+@login_required(redirect_field_name='login')
 def ver_consulta(request, consulta_id):
     consulta = get_object_or_404(Consulta, id=consulta_id)
     if not consulta.status_tupla:
@@ -107,6 +114,7 @@ def ver_consulta(request, consulta_id):
         'consulta': consulta
     })
 
+@login_required(redirect_field_name='login')
 def ver_paciente(request, paciente_id):
     paciente = get_object_or_404(Paciente, id=paciente_id)
     if not paciente.status_tupla:
@@ -118,6 +126,7 @@ def ver_paciente(request, paciente_id):
         'consulta': consultas
     })
 
+@login_required(redirect_field_name='login')
 def cadastroPaciente(request):
     if request.method != 'POST':
         return render(request, 'logistica/cadastroPaciente.html')
@@ -165,6 +174,7 @@ def cadastroPaciente(request):
     messages.add_message(request, messages.SUCCESS, 'Paciente cadastrado com sucesso!')
     return redirect('ver_paciente', paciente.pk)
 
+@login_required(redirect_field_name='login')
 def cadastroConsulta(request):
     pacientes = Paciente.objects.filter(
         status_tupla=True
@@ -202,6 +212,7 @@ def cadastroConsulta(request):
     messages.add_message(request, messages.SUCCESS, 'Consulta cadastrada com sucesso.')
     return redirect('ver_paciente', Cpaciente)
  
+@login_required(redirect_field_name='login')
 def apagarPaciente(request, paciente_id):
     paciente = get_object_or_404(Paciente, id=paciente_id)
     if request.method != 'POST':
@@ -213,6 +224,7 @@ def apagarPaciente(request, paciente_id):
     obj.save()
     return redirect ('paciente')
 
+@login_required(redirect_field_name='login')
 def atualizarPaciente(request, paciente_id):
     paciente = get_object_or_404(Paciente, id=paciente_id)
     if request.method != 'POST':
@@ -265,6 +277,7 @@ def atualizarPaciente(request, paciente_id):
     messages.add_message(request, messages.SUCCESS, 'Paciente atualizado com sucesso!')
     return redirect('ver_paciente', paciente.pk)
 
+@login_required(redirect_field_name='login')
 def apagarConsulta(request, consulta_id):
     consulta = get_object_or_404(Consulta, id=consulta_id)
     if request.method != 'POST':
@@ -276,6 +289,7 @@ def apagarConsulta(request, consulta_id):
     obj.save()
     return redirect ('consulta')
 
+@login_required(redirect_field_name='login')
 def atualizarConsulta(request, consulta_id):
     consulta = get_object_or_404(Consulta, id=consulta_id)
     pacientes = Paciente.objects.filter(

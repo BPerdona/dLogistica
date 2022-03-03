@@ -6,10 +6,10 @@ from django.urls import reverse
 class Paciente(models.Model):
     nome_completo = models.CharField(max_length=150)
     rg = models.CharField(max_length=10)
-    cpf = models.CharField(max_length=12)
+    cpf = models.CharField(max_length=15)
     cns = models.CharField(max_length=20)
     data_de_nascimento = models.DateField(null=True, blank=True)
-    telefone = models.CharField(max_length=15)
+    telefone = models.CharField(max_length=20)
     status_tupla = models.BooleanField(default=True)
 
     def __str__(self) :
