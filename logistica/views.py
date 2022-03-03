@@ -6,16 +6,12 @@ from django.db.models import Q
 from django.contrib import messages
 
 def index(request):
-    qtd_pacientes = Paciente.objects.count()
-    qtd_consultas = Consulta.objects.count()
-    qtd_viagens = Viagem.objects.count()
-    qtd_motoristas = Motorista.objects.count()
+    qtd_pacientes = Paciente.objects.filter(status_tupla=True).count()
+    qtd_consultas = Consulta.objects.filter(status_tupla=True).count()
 
     context = {
         'qtd_pacientes': qtd_pacientes,
         'qtd_consultas': qtd_consultas,
-        'qtd_viagens': qtd_viagens,
-        'qtd_motoristas': qtd_motoristas
     }
 
     return render(request, 'logistica/index.html', context)
