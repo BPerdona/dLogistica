@@ -13,7 +13,7 @@ Nesse repositório será desenvolvido um sistema de gerenciamento de pacientes e
 - (V) Implementar listagem de Paciente;
 - (X) Desenvolver o CRUD para Paciente;
 - (V) Implementar a visualização dos detalhes de Paciente;
-- (X) Implementar CRUD de Consulta;
+- (V) Implementar CRUD de Consulta;
 - (V) Implementar a listagem de todas as Consultas;
 - (V) Implementar a visualização dos detalhes da Consulta;
 - (V) Adicionar a Paciente-Detalhes a visualização de todas as consultas;
