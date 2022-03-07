@@ -151,6 +151,9 @@ def cadastroPaciente(request):
         return render(request, 'logistica/cadastroPaciente.html')
         # adicionar mensagem de retorno fracasso
 
+    #Camel Case para nome
+    Cnome = camelCase(Cnome)
+
     #Validando para ver se o nome já existe
     if Paciente.objects.filter(nome_completo=Cnome, status_tupla=True).exists():
         messages.add_message(request, messages.ERROR, 'Esse nome de usuario já existe no sistema!')
@@ -167,6 +170,7 @@ def cadastroPaciente(request):
     if Paciente.objects.filter(rg=Crg, status_tupla=True).exists():
         messages.add_message(request, messages.ERROR, 'Esse RG já está cadastrado no sistema')
         return render(request, 'logistica/cadastroPaciente.html')
+
 
     #Salvando objeto
     obj = Paciente.objects.create(nome_completo=Cnome, rg=Crg, cpf=Ccpf, cns=Ccns, data_de_nascimento=Cdata_nascimento, telefone=Ctelefone)
@@ -208,6 +212,11 @@ def cadastroConsulta(request):
             'pacientes': pacientes
         })
 
+    #Adicionando Camel Case
+    Chospital = camelCase(Chospital)
+    Cacompanhante = camelCase(Cacompanhante)
+    Clocal = camelCase(Clocal)
+
     obj = Consulta.objects.create(data_da_consulta=Cdata, hospital=Chospital, paciente=pacienteSele, horario_da_consulta=Chorario, acompanhante=Cacompanhante, local_de_espera=Clocal)
     messages.add_message(request, messages.SUCCESS, 'Consulta cadastrada com sucesso.')
     return redirect('ver_paciente', Cpaciente)
@@ -246,6 +255,8 @@ def atualizarPaciente(request, paciente_id):
     if not Unome or not Urg or not Ucpf or not Udata_de_nascimento or not Ucns or not Utelefone:
         messages.add_message(request, messages.ERROR, 'Todos os campos devem ser preenchidos')
         return redirect('atualizar_paciente', paciente_id)
+
+    Unome = camelCase(Unome)
 
     # Validando para ver se o nome já existe
     if Paciente.objects.filter(nome_completo=Unome, status_tupla=True).exists():
@@ -317,6 +328,11 @@ def atualizarConsulta(request, consulta_id):
             'consulta' : consulta,
             'pacientes': pacientes
         })
+    
+    #Adicionando Camel Case
+    Uhospital = camelCase(Uhospital)
+    Uacompanhante = camelCase(Uacompanhante)
+    Ulocal = camelCase(Ulocal)
 
     objPaciente = get_object_or_404(Paciente, pk=Upaciente)
 
@@ -329,4 +345,14 @@ def atualizarConsulta(request, consulta_id):
     consulta.save()
     messages.add_message(request, messages.SUCCESS, 'Consulta atualizada com sucesso.')
     return redirect('ver_consulta', consulta_id)
-    
+
+#Funçao para transformar strings em camel case
+def camelCase(string):
+        string_dividida = string.split(" ")
+        nova_string = ''
+        for palavra in string_dividida:
+            if len(palavra) >= 3:
+                nova_string += palavra[0].upper()+palavra[1:].lower()+" "
+            else:
+                nova_string += palavra.lower()+" "
+        return nova_string

@@ -25,7 +25,7 @@ class Consulta(models.Model):
     status_tupla = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'Hospital: {self.hospital} Data: {self.data_da_consulta} Paciente: {self.paciente.nome}'
+        return f'Hospital: {self.hospital} Data: {self.data_da_consulta} Paciente: {self.paciente.nome_completo}'
 
 class Motorista(models.Model):
     nome = models.CharField(max_length=150)
